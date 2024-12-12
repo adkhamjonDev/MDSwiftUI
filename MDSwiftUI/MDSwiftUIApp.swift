@@ -6,32 +6,19 @@
 //
 
 import SwiftUI
+import SwiftfulRouting
 
 @main
 struct MDSwiftUIApp: App {
     @State var languageSettings = LanguageSetting()
     
-    @State private var routes: [Route] = []
-    
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $routes){
+            RouterView { _ in
                 MapScreen()
                     .preferredColorScheme(.dark)
                     .environment(\.locale, languageSettings.locale)
-                    .environment(\.navigate) { route in
-                        routes.append(route)
-                    }
-                    .navigationDestination(for: Route.self) { route in
-                        switch route {
-                        case .login:
-                            LoginScreen()
-                        case .map:
-                            MapScreen()
-                        case .settings:
-                            SettingsScreen()
-                        }
-                    }
+                    
             }
             
         }

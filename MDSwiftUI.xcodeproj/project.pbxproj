@@ -95,7 +95,7 @@
 		EC8E995F2D041A7C00304A81 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = NO;
 				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
@@ -111,7 +111,6 @@
 				uz,
 				"uz-Cyrl",
 				ru,
-				Base,
 			);
 			mainGroup = EC8E995E2D041A7C00304A81;
 			minimizedProjectReferenceProxies = 1;

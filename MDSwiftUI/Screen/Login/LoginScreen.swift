@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import SwiftfulRouting
 
 struct LoginScreen: View {
-    @Environment(\.navigate) private var navigator
-    @State private var username: String = ""
-    @State private var password: String = ""
+    
     @State private var viewModel = LoginScreenViewModel()
     
+    @State private var username: String = ""
+    @State private var password: String = ""
     
+    @Environment(\.router) var router
+
     var isButtonEnabled: Bool {
         !username.isEmpty && !password.isEmpty
     }
@@ -84,14 +87,10 @@ extension LoginScreen {
                 title: StringManager.instance.continuee,
                 isEnabled: .constant(isButtonEnabled)
             ){
-                navigator(.map)
-//                Task {
-//                    try await viewModel.userLogin()
-//                    clearFields()
-//                    if viewModel.isUserLogged {
-//                        
-//                    }
-//                }
+                clearFields()
+                router.showScreen(.push) { _ in
+                    MapScreen()
+                }
                
             }
             

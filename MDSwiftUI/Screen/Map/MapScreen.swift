@@ -7,74 +7,59 @@
 
 import SwiftUI
 import MapKit
+import SwiftfulRouting
+
 
 struct MapScreen: View {
+    
+    @Environment(\.router) var router
+
+    
     @StateObject private var mapController = MapController()
+    
     @State var presentSideMenu: Bool = false
-    @Environment(\.navigate) private var navigator
-    @State private var logoutAlert: Bool = false
+    @State var isLogoutAlert: Bool = false
+    
     var body: some View {
-        MainView{
+        MainView {
             OSMMapView(mapController: mapController)
-            HStack {
-                VStack {
-                    MapDrawerMenuButton{
-                        presentSideMenu.toggle()
-                    }
-                    Spacer()
-                    
-                    OsmControlButton(imageName: ImageManager.instance.osmZoomIn) {
-                        
-                    }
-                    OsmControlButton(imageName: ImageManager.instance.osmZoomOut) {
-                        
-                    }
-                    Spacer()
-                    
-                    OsmControlButtonBorder(imageName: ImageManager.instance.currentLocation) {
-                        
-                    }
-                }
-                Spacer()
-            }
-            .padding(6)
-            
-            SideNavView(
-                isShowingSideNav: $presentSideMenu,
-                mapClick: {
-                    navigator(.map)
-                },
-                settingsClick: {
-                    navigator(.settings)
-                },
-                logoutClick: {
-                    logoutAlert.toggle()
-                    presentSideMenu.toggle()
-                }
-            )
-                .transition(.move(edge: .leading))
-                .animation(.easeInOut(duration: 0.5), value: presentSideMenu)
-
-
-            
+            mapContentView
+            sideBarView
         }
         .ignoresSafeArea()
         .toolbarVisibility(.hidden)
-        .alert(isPresented: $logoutAlert) {
-            Alert(
-                title: Text(StringManager.instance.logout),
-                message: Text(StringManager.instance.logout),
-                primaryButton: .default(Text("Ҳа")
-                    .foregroundColor(Color.text), action: {
-                        navigator(.login)
-                }),
-                secondaryButton: .cancel(Text("Йўқ").foregroundColor(Color.text), action: {})
-                
-            )
+        .alert(isPresented: $isLogoutAlert) {
+            logoutAlert()
         }
-        
-        
     }
+    
+    
+    func toogleAlert() {
+        isLogoutAlert.toggle()
+    }
+    
+    func logoutAlert() -> Alert {
+        return Alert(
+            title: Text(StringManager.instance.logout),
+            message: Text(StringManager.instance.logout),
+            primaryButton: .default(
+                Text(StringManager.instance.no)
+                    .foregroundStyle(Color.text),
+                action: toogleAlert
+            ),
+            secondaryButton: .default(
+                Text(StringManager.instance.yes)
+                    .foregroundStyle(Color.text),
+                action: {
+                    router.showScreen(.push) { _ in
+                        LoginScreen()
+                    }
+                    router.dismissScreenStack()
+                }
+            )
+        )
+    }
+   
 }
 
 extension MapScreen {
@@ -83,6 +68,59 @@ extension MapScreen {
             
         }
     }
+    private func navigateToSettingScreen() {
+        router.showScreen(.push) { _ in
+            
+            SettingsScreen()
+            
+        }
+    }
+    
+    private var sideBarView : some View {
+        SideNavView(
+            isShowingSideNav: $presentSideMenu,
+            mapClick: {},
+            settingsClick: {
+                presentSideMenu.toggle()
+                navigateToSettingScreen()
+            },
+            logoutClick: {
+                presentSideMenu.toggle()
+                isLogoutAlert.toggle()
+            }
+        )
+    }
+    
+    private var mapContentView : some View {
+        HStack {
+            VStack {
+                MapDrawerMenuButton {
+                    
+                    presentSideMenu.toggle()
+                    
+                }
+                
+                Spacer()
+                
+                OsmControlButton(imageName: ImageManager.instance.osmZoomIn) {
+                    
+                }
+                
+                OsmControlButton(imageName: ImageManager.instance.osmZoomOut) {
+                    
+                }
+                
+                Spacer()
+                
+                OsmControlButtonBorder(imageName: ImageManager.instance.currentLocation) {
+                    
+                }
+            }
+            Spacer()
+        }
+        .padding(6)
+    }
+    
 }
 
 struct OSMMapView: UIViewRepresentable {
