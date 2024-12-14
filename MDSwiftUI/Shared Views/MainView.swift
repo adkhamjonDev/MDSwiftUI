@@ -17,13 +17,16 @@ struct MainView<Content: View>: View {
     
     var body: some View {
         ZStack {
-            Color.screenBackground.ignoresSafeArea()
-            content
-            if isLoading {
-                ZStack(alignment: .center) {
-                    Color.screenBackground.opacity(0.6)
-                    ProgressView()
-                        .progressViewStyle(.circular)
+            
+            Color.screenBackground
+            ZStack {
+                content
+                if isLoading {
+                    ZStack(alignment: .center) {
+                        Color.screenBackground.opacity(0.6)
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                    }
                 }
             }
         }
@@ -37,5 +40,5 @@ struct MainView<Content: View>: View {
     MainView(isLoading: false, content: {
         
     }
-             )
+    )
 }

@@ -33,24 +33,27 @@ struct SideNavView: View {
                 VStack(alignment: .leading) {
                     SideViewHeader(name: "Adkhamjon Rakhimov")
                     VStack {
-                        SideViewButton(iconName: ImageManager.instance.map, title: StringManager.instance.map) {
-                            mapClick()
-                        }
+                        SideViewButton(iconName: ImageManager.instance.map, title: StringManager.instance.map)
+                            .onTapGesture {
+                                mapClick()
+                            }
                         Spacer().frame(height: 10)
-                        SideViewButton(iconName: ImageManager.instance.settings, title: StringManager.instance.settings) {
-                            settingsClick()
-                        }
+                        SideViewButton(iconName: ImageManager.instance.settings, title: StringManager.instance.settings)
+                            .onTapGesture {
+                                settingsClick()
+                            }
                         Spacer()
-                        LogoutButton(onClick: {
-                            logoutClick()
-                        })
+                        LogoutButton()
+                            .onTapGesture {
+                                logoutClick()
+                            }
                         .padding(.bottom, 12)
                     }
                     .padding(.horizontal, 12)
                 }
                 .frame(width: 270, alignment: .leading)
                 .background(Color.screenBackground)
-                .offset(x: isShowingSideNav ? 0 : -300) // Slide in/out animation
+                .offset(x: isShowingSideNav ? 0 : -300)
                 .animation(.easeInOut(duration: 0.25), value: isShowingSideNav)
 
                 Spacer()
@@ -63,5 +66,6 @@ struct SideNavView: View {
 
 #Preview {
     SideNavView(isShowingSideNav: .constant(true),mapClick: {},settingsClick: {},logoutClick: {})
+        
 }
 

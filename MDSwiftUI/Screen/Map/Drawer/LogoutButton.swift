@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct LogoutButton: View {
-    
-    let onClick: () -> Void
-    
     var body: some View {
         HStack {
-           
             Text(StringManager.instance.logout)
                 .font(.system(size: 12))
                 .font(.headline)
@@ -24,12 +20,9 @@ struct LogoutButton: View {
         .frame(maxWidth: .infinity)
         .background(Color.redd)
         .cornerRadius(17)
-        .onTapGesture {
-            onClick()
-        }
     }
 }
 
 #Preview {
-    LogoutButton(onClick: {})
+    LogoutButton()
 }

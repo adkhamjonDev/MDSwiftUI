@@ -23,6 +23,21 @@
         }
       }
     },
+    "%lld KM" : {
+
+    },
+    "01 A111 AA" : {
+
+    },
+    "10" : {
+
+    },
+    "30" : {
+
+    },
+    "40" : {
+
+    },
     "123123" : {
       "localizations" : {
         "ru" : {
@@ -41,6 +56,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "123123"
+          }
+        }
+      }
+    },
+    "All" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jami"
+          }
+        },
+        "uz-Cyrl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Жами"
           }
         }
       }
@@ -228,6 +266,32 @@
         }
       }
     },
+    "Moving" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В движении"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harakatda"
+          }
+        },
+        "uz-Cyrl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ҳаракатда"
+          }
+        }
+      }
+    },
+    "Nexia 2" : {
+
+    },
     "No" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -247,6 +311,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Йўқ"
+          }
+        }
+      }
+    },
+    "Offline" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выключен"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O'chirilgan"
+          }
+        },
+        "uz-Cyrl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ўчирилган"
           }
         }
       }
@@ -293,6 +380,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Русский"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saqlash"
+          }
+        },
+        "uz-Cyrl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сақлаш"
           }
         }
       }

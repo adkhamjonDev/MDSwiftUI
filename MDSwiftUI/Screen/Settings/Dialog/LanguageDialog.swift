@@ -15,8 +15,6 @@ struct LanguageModel: Hashable {
 
 struct LanguageDialog: View {
     
-    
-    @Binding var isActive: Bool
     @State private var offset: CGFloat = 1000
     
     private let languagelList:[LanguageModel] = [
@@ -71,7 +69,7 @@ struct LanguageDialog: View {
             }
             .frame(width: UIScreen.main.bounds.width * 0.55)
             .background(Color.carView)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .cornerRadius(8)
             .shadow(radius: 20)
             .offset(x: 0, y: offset)
             .onAppear {
@@ -85,5 +83,5 @@ struct LanguageDialog: View {
 }
 
 #Preview {
-    LanguageDialog(isActive: .constant(true),action: {_ in },close: {})
+    LanguageDialog(action: {_ in },close: {})
 }

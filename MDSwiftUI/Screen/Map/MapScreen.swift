@@ -13,20 +13,63 @@ import SwiftfulRouting
 struct MapScreen: View {
     
     @Environment(\.router) var router
-
+    
     
     @StateObject private var mapController = MapController()
     
     @State var presentSideMenu: Bool = false
     @State var isLogoutAlert: Bool = false
+    @State var carListView: Bool = false
     
     var body: some View {
         MainView {
             OSMMapView(mapController: mapController)
-            mapContentView
+            GeometryReader { geo in
+                HStack(spacing: 0) {
+                    mapContentView
+                    Spacer()
+                    if carListView {
+                        
+                        CarListSection {
+                            
+                        }
+                        .frame(width: geo.size.width * 0.34)
+                        .animation(.easeInOut(duration: 0.5), value: carListView)
+                        .gesture(
+                            DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                                .onEnded { value in
+                                    if value.translation.width > 50 {
+                                        withAnimation(.easeInOut(duration: 0.5)) {
+                                            carListView = false
+                                        }
+                                    }
+                                }
+                        )
+                        
+                        
+                    } else {
+                        Rectangle()
+                            .fill(Color.main)
+                            .frame(width: geo.size.width * 0.01, height: geo.size.width * 0.5)
+                            .clipShape(
+                                RoundedCorners(topLeft: 20, topRight: 0, bottomLeft: 20, bottomRight: 0)
+                            )
+                            .gesture(
+                                DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                                    .onEnded { value in
+                                        if value.translation.width < 50 {
+                                            withAnimation(.easeInOut(duration: 0.5)) {
+                                                carListView = true
+                                            }
+                                        }
+                                    }
+                            )
+                    }
+                    
+                }
+            }
             sideBarView
         }
-        .ignoresSafeArea()
         .toolbarVisibility(.hidden)
         .alert(isPresented: $isLogoutAlert) {
             logoutAlert()
@@ -59,7 +102,7 @@ struct MapScreen: View {
             )
         )
     }
-   
+    
 }
 
 extension MapScreen {
@@ -103,11 +146,11 @@ extension MapScreen {
                 Spacer()
                 
                 OsmControlButton(imageName: ImageManager.instance.osmZoomIn) {
-                    
+                    mapController.zoomIn()
                 }
                 
                 OsmControlButton(imageName: ImageManager.instance.osmZoomOut) {
-                    
+                    mapController.zoomOut()
                 }
                 
                 Spacer()

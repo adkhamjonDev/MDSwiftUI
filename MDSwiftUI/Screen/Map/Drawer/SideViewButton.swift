@@ -12,8 +12,6 @@ struct SideViewButton: View {
     let iconName: String
     let title: String
     
-    let onClick: () -> Void
-    
     var body: some View {
         HStack {
             Spacer().frame(width: 16)
@@ -32,9 +30,7 @@ struct SideViewButton: View {
         .frame(maxWidth: .infinity)
         .background(Color.carView)
         .cornerRadius(17)
-        .onTapGesture {
-            onClick()
-        }
+       
         
         
         
@@ -42,7 +38,5 @@ struct SideViewButton: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    SideViewButton(iconName: ImageManager.instance.settings,title: StringManager.instance.settings) {
-        
-    }
+    SideViewButton(iconName: ImageManager.instance.settings,title: StringManager.instance.settings)
 }

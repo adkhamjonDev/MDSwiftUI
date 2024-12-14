@@ -32,4 +32,8 @@ class StringManager {
     let uzbek = String(localized: "Uzbek")
     let russian = String(localized: "Russian")
     let cyrillic = String(localized: "Cyrillic")
+    let save = String(localized: "Save")
+    let all = String(localized: "All")
+    let moving = String(localized: "Moving")
+    let offline = String(localized: "Offline")
 }

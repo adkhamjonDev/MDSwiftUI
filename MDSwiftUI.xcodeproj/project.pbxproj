@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EC72FE822D08D06C0059F889 /* SwiftfulRouting in Frameworks */ = {isa = PBXBuildFile; productRef = EC72FE812D08D06C0059F889 /* SwiftfulRouting */; };
+		EC7D65352D0C4B1D0071F410 /* SwiftUIFlow in Frameworks */ = {isa = PBXBuildFile; productRef = EC7D65342D0C4B1D0071F410 /* SwiftUIFlow */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC7D65352D0C4B1D0071F410 /* SwiftUIFlow in Frameworks */,
 				EC72FE822D08D06C0059F889 /* SwiftfulRouting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +86,7 @@
 			name = MDSwiftUI;
 			packageProductDependencies = (
 				EC72FE812D08D06C0059F889 /* SwiftfulRouting */,
+				EC7D65342D0C4B1D0071F410 /* SwiftUIFlow */,
 			);
 			productName = MDSwiftUI;
 			productReference = EC8E99672D041A7C00304A81 /* MDSwiftUI.app */;
@@ -116,6 +119,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				EC72FE802D08D06C0059F889 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
+				EC7D65332D0C4B1D0071F410 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EC8E99682D041A7C00304A81 /* Products */;
@@ -361,6 +365,14 @@
 				minimumVersion = 5.3.6;
 			};
 		};
+		EC7D65332D0C4B1D0071F410 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ciaranrobrien/SwiftUIFlow.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -368,6 +380,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC72FE802D08D06C0059F889 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */;
 			productName = SwiftfulRouting;
+		};
+		EC7D65342D0C4B1D0071F410 /* SwiftUIFlow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC7D65332D0C4B1D0071F410 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */;
+			productName = SwiftUIFlow;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
