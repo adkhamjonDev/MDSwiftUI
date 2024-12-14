@@ -23,5 +23,7 @@ class ImageManager {
     let moonStar = "moon.stars.fill"
     let radiowaves = "antenna.radiowaves.left.and.right"
     let xmark = "xmark"
+    let halfCircle = "half_circle"
+    let search = "magnifyingglass"
     
 }

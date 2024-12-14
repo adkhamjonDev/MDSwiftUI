@@ -19,7 +19,7 @@ struct MapScreen: View {
     
     @State var presentSideMenu: Bool = false
     @State var isLogoutAlert: Bool = false
-    @State var carListView: Bool = false
+    @State var carListView: Bool = true
     
     var body: some View {
         MainView {
@@ -30,17 +30,32 @@ struct MapScreen: View {
                     Spacer()
                     if carListView {
                         
+                        Image(ImageManager.instance.halfCircle)
+                            .resizable()
+                            .foregroundStyle(Color.main.opacity(0.6))
+                            .frame(width: 20, height: 40)
+                            .overlay(
+                                Image(systemName: ImageManager.instance.arrowRight)
+                                    .foregroundStyle(Color.white.opacity(0.6))
+                            )
+                            .onTapGesture {
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    carListView = false
+                                }
+                            }
+                        
                         CarListSection {
                             
                         }
                         .frame(width: geo.size.width * 0.34)
-                        .animation(.easeInOut(duration: 0.5), value: carListView)
+                        .offset(x: carListView ? 0 : geo.size.width * 0.34) // Slide fully off-screen
+                        .transition(.move(edge: .trailing).combined(with: .opacity))
                         .gesture(
                             DragGesture(minimumDistance: 0, coordinateSpace: .local)
                                 .onEnded { value in
-                                    if value.translation.width > 50 {
-                                        withAnimation(.easeInOut(duration: 0.5)) {
-                                            carListView = false
+                                    if value.translation.width > 50 { // Swipe right
+                                        withAnimation(.easeInOut(duration: 0.3)) {
+                                            carListView = false // Open sidebar
                                         }
                                     }
                                 }
@@ -136,10 +151,17 @@ extension MapScreen {
     
     private var mapContentView : some View {
         HStack {
-            VStack {
-                MapDrawerMenuButton {
+            VStack(alignment: .leading) {
+                HStack(spacing: 0) {
+                    MapDrawerMenuButton {
+                        
+                        presentSideMenu.toggle()
+                        
+                    }
+                    Spacer()
+                        .frame(width: 8)
+                    SearchView()
                     
-                    presentSideMenu.toggle()
                     
                 }
                 
