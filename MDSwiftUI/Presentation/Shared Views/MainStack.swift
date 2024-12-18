@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainView<Content: View>: View {
+struct MainStack<Content: View>: View {
     let content: Content
     var isLoading: Bool = false
     init(isLoading: Bool = false,@ViewBuilder content: () -> Content) {
@@ -37,7 +37,7 @@ struct MainView<Content: View>: View {
 }
 
 #Preview {
-    MainView(isLoading: false, content: {
+    MainStack(isLoading: false, content: {
         
     }
     )

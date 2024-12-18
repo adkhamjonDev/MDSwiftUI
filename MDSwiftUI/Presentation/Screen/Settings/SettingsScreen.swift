@@ -13,7 +13,7 @@ struct SettingsScreen: View {
     @State private var selectRadiusDialog: Bool = false
     @State private var toggle: Bool = false
     var body: some View {
-        MainView {
+        MainStack {
             VStack(spacing: 0) {
                 ToolBar(title: StringManager.instance.settings)
                 VStack(spacing: 0) {

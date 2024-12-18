@@ -21,7 +21,7 @@ struct LoginScreen: View {
         !username.isEmpty && !password.isEmpty
     }
     var body: some View {
-        MainView(isLoading: viewModel.isLoading){
+        MainStack(isLoading: viewModel.isLoading){
             GeometryReader { geo in
                 HStack(spacing: 0) {
                     imageTitleSection

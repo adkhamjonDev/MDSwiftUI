@@ -22,7 +22,7 @@ struct MapScreen: View {
     @State var carListView: Bool = true
     
     var body: some View {
-        MainView {
+        MainStack {
             OSMMapView(mapController: mapController)
             GeometryReader { geo in
                 HStack(spacing: 0) {
